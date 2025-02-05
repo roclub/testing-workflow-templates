@@ -1,0 +1,20 @@
+name: 'PR - type labeling'
+
+on:
+  pull_request:
+
+jobs:
+  PR_type_labeler:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout testing-workflow-templates repository
+        uses: actions/checkout@v4
+        with:
+          repository: roclub/testing-workflow-templates
+          ref: main  # Ensure we get the latest version
+
+      - name: Run PR Labeler
+        uses: grafana/pr-labeler-action@50737759cb150f5d312de1a45559027156db8bab # 0.1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/pr-labeler.yml
