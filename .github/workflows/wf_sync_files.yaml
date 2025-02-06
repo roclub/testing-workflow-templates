@@ -1,0 +1,26 @@
+name: 'WF - Sync files'
+on:
+
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  wf_sync_files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4
+
+      - name: Run GitHub File Sync
+        uses: BetaHuhn/repo-file-sync-action@8b92be3375cf1d1b0cd579af488a9255572e4619 #v1.21.1
+        with:
+          GH_PAT: ${{ secrets.REPOSITORY_SYNC }}
+          ASSIGNEES: "@roclub-bot"
+          BRANCH_PREFIX: chore
+          COMMIT_PREFIX: "chore:"
+          ORIGINAL_MESSAGE: true
+          COMMIT_AS_PR_TITLE: true
+          IS_FINE_GRAINED: true
+          SKIP_PR: true
