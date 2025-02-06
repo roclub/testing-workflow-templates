@@ -1,0 +1,9 @@
+# this is the config file for .github/workfows/sync.yaml
+# do not change filename or extension since the workflow file expects this exact name.
+group:
+  files:
+    - source: testfile.md
+      dest: testfile.md
+
+  repos: | # no issue-only, template, testing, styleguide, only productive repos
+    roclub/miscellaneous-testing
